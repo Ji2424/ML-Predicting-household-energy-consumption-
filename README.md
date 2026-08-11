@@ -1,33 +1,24 @@
-# Project Summary
+# Predicting Household Energy Consumption
 
-This project develops and compares linear and polynomial regression models to predict household energy demand using a cleaned and preprocessed real-world dataset containing over 50,000 observations and 30 initial features.
+**Linear regression outperformed polynomial regression on unseen data (R² 0.9936 vs 0.8992), showing that added model complexity introduced overfitting rather than improving predictive power.**
 
-The data preparation stage involved removing invalid values (NaN and Inf), dropping corrupted or redundant features, performing correlation-based feature selection, and applying z-score normalization to ensure consistent feature scaling. After cleaning, 27 input features were retained for modeling.
+This project develops and compares linear and polynomial regression models to predict household energy demand, using a cleaned, real-world dataset of over 50,000 observations and 30 initial features *(source: name it here)*.
 
+## Data Preparation
 
-## Linear Regression Performance
+- Removed invalid values (NaN, Inf) and dropped corrupted or redundant features
+- Correlation-based feature selection, reducing to 27 retained input features
+- Z-score normalisation for consistent feature scaling
 
-A linear regression model was trained using a 70:30 hold-out validation split. 
+## Results
 
-Training R²: 0.9935
+| Model | Training R² | Testing R² | Testing RMSE |
+|-------|-------------|------------|----------------|
+| Linear Regression | 0.9935 | 0.9936 | 0.0860 |
+| Polynomial Regression (deg. 2) | 0.9935 | 0.8992 | 0.3400 |
 
-Testing R²: 0.9936
-
-Testing RMSE: 0.0860
-
-The close agreement between training and testing metrics indicates strong generalization and minimal overfitting.
-
-## Second-degree Polynomial Regression Performance
-
-To evaluate whether additional complexity would improve performance, a second-degree polynomial regression model was implemented. While it captured nonlinear relationships, it introduced multicollinearity and increased model complexity. 
-
-Training R²: 0.9935
-
-Testing R²: 0.8992
-
-Testing RMSE: 0.3400
+The close agreement between linear regression's training and testing metrics indicates strong generalisation. The polynomial model performed comparably on training data but degraded sharply on the test set, a clear sign of overfitting driven by added multicollinearity.
 
 ## Conclusion
-Although the polynomial model performed well on training data, its reduced testing performance indicates minor overfitting and weaker generalization compared to the linear model.
 
-Overall, linear regression was selected as the preferred model due to its strong predictive accuracy on unseen data, stability, simplicity, and interpretability. This project demonstrates the importance of balancing model complexity with generalization performance, particularly in real-world energy forecasting applications.
+Linear regression was selected as the preferred model for its strong test accuracy, stability, and interpretability. This project underscores a common lesson in applied ML: greater model complexity doesn't guarantee better generalisation, and simpler models are often the right choice when they perform competitively.
